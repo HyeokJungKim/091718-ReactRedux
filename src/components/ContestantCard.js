@@ -1,7 +1,9 @@
 import React from 'react'
+import {connect} from 'react-redux';
 
 function ContestantCard(props) {
   const { contestant } = props
+
   const swapImage = () => {
     if (contestant.votes > 4) {
       return "https://data.whicdn.com/images/173918733/large.jpg"
@@ -31,4 +33,27 @@ function ContestantCard(props) {
   )
 }
 
-export default ContestantCard
+
+
+
+
+
+
+
+
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    increaseVote: (id) => dispatch({
+      type: "INCREASE_VOTE",
+      payload: id
+    }),
+    decreaseVote: (id) => dispatch({
+      type: "DECREASE_VOTE",
+      payload: id
+    })
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ContestantCard)
